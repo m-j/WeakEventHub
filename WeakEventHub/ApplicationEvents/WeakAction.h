@@ -14,6 +14,7 @@
 @property(readonly) SEL selector;
 
 - (id)initWithTarget:(id)target andSelector:(SEL)selector;
++ (id)newWithTarget:(id)target andSelector:(SEL)selector;
 
 - (BOOL)tryToInvokeActionWithParameter:(id)parameter;
 

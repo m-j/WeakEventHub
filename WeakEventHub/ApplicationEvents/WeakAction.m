@@ -23,6 +23,10 @@
     return self;
 }
 
++ (id)newWithTarget:(id)target andSelector:(SEL)selector{
+    return [[WeakAction alloc] initWithTarget:target andSelector:selector];
+}
+
 - (BOOL)tryToInvokeActionWithParameter:(id)parameter {
     if (!self.target) {
         return NO;

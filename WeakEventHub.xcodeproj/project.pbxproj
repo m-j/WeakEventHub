@@ -27,6 +27,7 @@
 		29E86F5B16F487290009F9E4 /* WeakEventHub.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E86F5A16F487290009F9E4 /* WeakEventHub.m */; };
 		29E86F5E16F487420009F9E4 /* WeakEventHubSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E86F5D16F487420009F9E4 /* WeakEventHubSpec.m */; };
 		29E86F6116F48BAC0009F9E4 /* EventHubTestHarness.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E86F6016F48BAC0009F9E4 /* EventHubTestHarness.m */; };
+		29E86F6716F4B9630009F9E4 /* WeakActionMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E86F6616F4B9630009F9E4 /* WeakActionMock.m */; };
 		5BB209234D4C406299CD078A /* libPods-WeakEventHubTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A424E428BBBC4A43B92AA490 /* libPods-WeakEventHubTests.a */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,8 @@
 		29E86F5D16F487420009F9E4 /* WeakEventHubSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeakEventHubSpec.m; path = ApplicationEvents/WeakEventHubSpec.m; sourceTree = "<group>"; };
 		29E86F5F16F48BAC0009F9E4 /* EventHubTestHarness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventHubTestHarness.h; path = ApplicationEvents/EventHubTestHarness.h; sourceTree = "<group>"; };
 		29E86F6016F48BAC0009F9E4 /* EventHubTestHarness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventHubTestHarness.m; path = ApplicationEvents/EventHubTestHarness.m; sourceTree = "<group>"; };
+		29E86F6516F4B9630009F9E4 /* WeakActionMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeakActionMock.h; path = ApplicationEvents/WeakActionMock.h; sourceTree = "<group>"; };
+		29E86F6616F4B9630009F9E4 /* WeakActionMock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeakActionMock.m; path = ApplicationEvents/WeakActionMock.m; sourceTree = "<group>"; };
 		7B8799C5EA9F46668D2D2CFD /* Pods-WeakEventHubTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeakEventHubTests.xcconfig"; path = "Pods/Pods-WeakEventHubTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		A424E428BBBC4A43B92AA490 /* libPods-WeakEventHubTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WeakEventHubTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -194,6 +197,8 @@
 				29E86F5D16F487420009F9E4 /* WeakEventHubSpec.m */,
 				29E86F5F16F48BAC0009F9E4 /* EventHubTestHarness.h */,
 				29E86F6016F48BAC0009F9E4 /* EventHubTestHarness.m */,
+				29E86F6516F4B9630009F9E4 /* WeakActionMock.h */,
+				29E86F6616F4B9630009F9E4 /* WeakActionMock.m */,
 			);
 			name = ApplicationEvents;
 			sourceTree = "<group>";
@@ -338,6 +343,7 @@
 				29E86F5816F473760009F9E4 /* WeakActionSpec.m in Sources */,
 				29E86F5E16F487420009F9E4 /* WeakEventHubSpec.m in Sources */,
 				29E86F6116F48BAC0009F9E4 /* EventHubTestHarness.m in Sources */,
+				29E86F6716F4B9630009F9E4 /* WeakActionMock.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

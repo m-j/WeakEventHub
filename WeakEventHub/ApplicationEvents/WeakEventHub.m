@@ -22,7 +22,7 @@
     return self;
 }
 
--(void)subscribe:(NSString *)channelName withTarget:(id)target andSelector:(SEL)selector {
+- (void)subscribe:(NSString *)channelName withAction:(WeakAction *)action {
     NSMutableArray *actionsArray = _channels[channelName];
     
     if (!actionsArray) {
@@ -30,9 +30,7 @@
         _channels[channelName] = actionsArray;
     }
     
-    WeakAction *weakAction = [[WeakAction alloc] initWithTarget:target andSelector:selector];
-    
-    [actionsArray addObject:weakAction];
+    [actionsArray addObject:action];
 }
 
 - (void)post:(NSString *)channelName withParameter:(id)parameter {
@@ -45,11 +43,9 @@
     NSMutableArray *actionsToDelete = [NSMutableArray new];
     
     for (WeakAction *weakAction in actionsArray) {
-        if (weakAction.target) {
-
-        }
-        else {
-            
+        BOOL wasActionInvoked = [weakAction tryToInvokeActionWithParameter:parameter];
+        if (!wasActionInvoked) {
+            [actionsToDelete addObject:weakAction];
         }
     }
 }

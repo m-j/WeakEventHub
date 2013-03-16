@@ -1,5 +1,5 @@
 //
-//  WeakEventHub.h
+//  WeakActionMock.h
 //  WeakEventHub
 //
 //  Created by Mateusz Jamiołkowski on 16/03/2013.
@@ -9,9 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "WeakAction.h"
 
-@interface WeakEventHub : NSObject
+@interface WeakActionMock : WeakAction
 
-- (void)subscribe:(NSString *)channelName withAction:(WeakAction *)action;
-- (void)post:(NSString *)channelName withParameter:(id)parameter;
+@property(readonly) int numberOfTryToInvokeInvokations;
 
 @end
