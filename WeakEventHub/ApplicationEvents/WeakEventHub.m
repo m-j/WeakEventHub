@@ -48,6 +48,10 @@
             [actionsToDelete addObject:weakAction];
         }
     }
+    
+    for (WeakAction *actionToDelete in actionsToDelete) {
+        [actionsArray removeObject:actionToDelete];
+    }
 }
 
 @end

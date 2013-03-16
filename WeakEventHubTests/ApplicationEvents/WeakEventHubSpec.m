@@ -9,6 +9,7 @@
 #import "Kiwi.h"
 #import "WeakEventHub.h"
 #import "EventHubTestHarness.h"
+#import "WeakActionMock.h"
 
 SPEC_BEGIN(WeakEventHubSpec)
 
@@ -47,7 +48,14 @@ describe(@"WeakEventHub", ^{
     
     describe(@"when having deallocated subscribents", ^{
         it(@"should try to call them only once", ^{
+            WeakActionMock *actionMock = [WeakActionMock new];
             
+            [eventHub subscribe:testChannel withAction:actionMock];
+            
+            [eventHub post:testChannel withParameter:nil];
+            [eventHub post:testChannel withParameter:nil];
+            
+            [[theValue(actionMock.numberOfTryToInvokeInvokations) should] equal:theValue(1)];
         });
     });
 });
