@@ -11,6 +11,7 @@
 
 @implementation WeakEventHub {
     NSMutableDictionary *_channels;
+    NSMutableArray *_actionsToDelete;
 }
 
 - (id)init
@@ -18,6 +19,8 @@
     self = [super init];
     if (self) {
         _channels = [NSMutableDictionary new];
+        _actionsToDelete = [NSMutableArray new];
+        
     }
     return self;
 }
@@ -40,16 +43,25 @@
         return;
     }
     
-    NSMutableArray *actionsToDelete = [NSMutableArray new];
+    [_actionsToDelete removeAllObjects];
     
     for (WeakAction *weakAction in actionsArray) {
-        BOOL wasActionInvoked = [weakAction tryToInvokeActionWithParameter:parameter];
-        if (!wasActionInvoked) {
-            [actionsToDelete addObject:weakAction];
-        }
+        [self tryToInvokeAction:weakAction withParameter:parameter];
     }
     
-    for (WeakAction *actionToDelete in actionsToDelete) {
+    [self removeActionsMarkedForDeletionInActionArray:actionsArray];
+}
+
+- (void)tryToInvokeAction:(WeakAction*)weakAction withParameter:(id)parameter {
+    
+    BOOL wasActionInvoked = [weakAction tryToInvokeActionWithParameter:parameter];
+    if (!wasActionInvoked) {
+        [_actionsToDelete addObject:weakAction];
+    }
+}
+
+- (void)removeActionsMarkedForDeletionInActionArray:(NSMutableArray *)actionsArray {
+    for (WeakAction *actionToDelete in _actionsToDelete) {
         [actionsArray removeObject:actionToDelete];
     }
 }
