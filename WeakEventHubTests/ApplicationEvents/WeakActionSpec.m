@@ -8,7 +8,7 @@
 
 #import "Kiwi.h"
 #import "WeakAction.h"
-
+#import "EventHubTestHarness.h"
 
 SPEC_BEGIN(WeakActionSpec)
 
@@ -45,6 +45,50 @@ describe(@"WeakActon", ^{
         
         [[theValue(initialRetainCount) should] equal:theValue(finalRetainCount)];
     });
+    
+    describe(@"when invoking", ^{
+        __block WeakAction *action;
+        __block EventHubTestHarness *testHarness;
+        NSString *testArgument = @"testArgument";
+        
+        describe(@"with valid target", ^{
+            beforeEach(^{
+                testHarness = [EventHubTestHarness new];
+                action = [[WeakAction alloc]
+                          initWithTarget:testHarness andSelector:@selector(testMethod:)];
+            });
+
+            
+            it(@"should perform selector on given target", ^{
+                [action tryToInvokeActionWithParameter:nil];
+                [[theValue(testHarness.numberOfTestMethodsCalls) should] equal:theValue(1)];
+            });
+            
+            it(@"should pass parameter", ^{
+                [action tryToInvokeActionWithParameter:testArgument];
+                [[testHarness.lastParameterPassed should] equal:testArgument];
+            });
+            
+            it(@"should return YES", ^{
+                BOOL wasAbleToInvoke = [action tryToInvokeActionWithParameter:testArgument];
+                [[theValue(wasAbleToInvoke) should] beTrue];
+            });
+        });
+        
+        describe(@"with invalid target", ^{
+            beforeEach(^{
+                action = [[WeakAction alloc]
+                          initWithTarget:nil andSelector:@selector(testMethod:)];
+            });
+            
+            it(@"should return NO", ^{
+                BOOL wasAbleToInvoke = [action tryToInvokeActionWithParameter:testArgument];
+                [[theValue(wasAbleToInvoke) should] beFalse];
+            });
+        });
+    });
+    
+
 });
 
 SPEC_END

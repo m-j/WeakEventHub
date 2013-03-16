@@ -31,12 +31,12 @@ describe(@"WeakEventHub", ^{
                      withTarget:testHarness2 andSelector:@selector(testMethod:)];
         });
         
-        it(@"should call all subscibed selectors", ^{
-            [eventHub post:testChannel withParameter:nil];
-            
-            [[theValue(testHarness1.numberOfTestMethodsCalls) should] equal:theValue(1)];
-            [[theValue(testHarness1.numberOfTestMethodsCalls) should] equal:theValue(1)];
-        });
+//        it(@"should call all subscibed selectors", ^{
+//            [eventHub post:testChannel withParameter:nil];
+//            
+//            [[theValue(testHarness1.numberOfTestMethodsCalls) should] equal:theValue(1)];
+//            [[theValue(testHarness1.numberOfTestMethodsCalls) should] equal:theValue(1)];
+//        });
     });
 });
 

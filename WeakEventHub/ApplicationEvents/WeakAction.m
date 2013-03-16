@@ -23,4 +23,14 @@
     return self;
 }
 
+- (BOOL)tryToInvokeActionWithParameter:(id)parameter {
+    if (!self.target) {
+        return NO;
+    }
+    else {
+        [self.target performSelector:self.selector withObject:parameter];
+        return YES;
+    }
+}
+
 @end

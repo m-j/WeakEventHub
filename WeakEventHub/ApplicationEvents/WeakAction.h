@@ -15,4 +15,6 @@
 
 - (id)initWithTarget:(id)target andSelector:(SEL)selector;
 
+- (BOOL)tryToInvokeActionWithParameter:(id)parameter;
+
 @end
