@@ -9,15 +9,25 @@
 #import "AppDelegate.h"
 
 #import "ViewController.h"
+#import "ViewManager.h"
 
-@implementation AppDelegate
+@implementation AppDelegate {
+    
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
-    self.window.rootViewController = self.viewController;
+    
+    UISplitViewController *splitViewController = [[UISplitViewController alloc] init];
+    
+    self.viewController = splitViewController;
+    self.window.rootViewController = splitViewController;
+    
+    ViewManager *viewManager = [[ViewManager alloc] initWithSplitViewController:splitViewController];
+    [viewManager preloadView];
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
