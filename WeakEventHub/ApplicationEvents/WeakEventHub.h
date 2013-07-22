@@ -11,6 +11,7 @@
 
 @interface WeakEventHub : NSObject
 
+- (void)unsubscribeTarget:(id)target inChannelName:(NSString *)channelName;
 - (void)subscribe:(NSString *)channelName withAction:(WeakAction *)action;
 - (void)post:(NSString *)channelName withParameter:(id)parameter;
 
