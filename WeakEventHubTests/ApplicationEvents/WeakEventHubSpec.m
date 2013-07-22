@@ -46,6 +46,25 @@ describe(@"WeakEventHub", ^{
         });
     });
     
+    describe(@"when removing subscribents", ^{
+        
+        __block EventHubTestHarness *testHarness1;
+        
+        beforeEach(^{
+            testHarness1 = [[EventHubTestHarness alloc] initWithEventHub:eventHub];
+        });
+        
+        it(@"should no longer notify the subscriber", ^{
+            [eventHub subscribe:testChannel withAction:[WeakAction newWithTarget:testHarness1 andSelector:@selector(testMethod:)]];
+            [eventHub post:testChannel withParameter:nil];
+            
+            [eventHub unsubscribeTarget:testHarness1 inChannelName:testChannel];
+            [eventHub post:testChannel withParameter:nil];
+            
+            [[theValue(testHarness1.numberOfTestMethodsCalls) should] equal:theValue(1)];
+        });
+    });
+    
     describe(@"when having deallocated subscribents", ^{
         it(@"should try to call them only once", ^{
             WeakActionMock *actionMock = [WeakActionMock new];

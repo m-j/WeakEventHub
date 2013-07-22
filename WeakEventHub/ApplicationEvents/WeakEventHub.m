@@ -36,6 +36,20 @@
     [actionsArray addObject:action];
 }
 
+- (void)unsubscribeTarget:(id)target inChannelName:(NSString *)channelName {
+    NSMutableArray *actionsArray = [_channels objectForKey:channelName];
+    
+    NSMutableArray *actionsToRemove = [NSMutableArray new];
+    
+    for (WeakAction *action in actionsArray) {
+        if (action.target == target) {
+            [actionsToRemove addObject:action];
+        }
+    }
+    
+    [actionsArray removeObjectsInArray:actionsToRemove];
+}
+
 - (void)post:(NSString *)channelName withParameter:(id)parameter {
     NSMutableArray *actionsArray = _channels[channelName];
     
